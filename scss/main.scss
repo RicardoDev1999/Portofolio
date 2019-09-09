@@ -1,0 +1,99 @@
+@import "../lib/node_modules/bootstrap/scss/bootstrap.scss";
+
+$darkgrey--color: #121212;
+
+@font-face {
+  font-family: "LeagueSpartan";
+  src: url("../fonts/LeagueSpartan-Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+* {
+  font-family: "LeagueSpartan";
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.bg-darkgrey {
+  background-color: $darkgrey--color;
+  color: #fafafa !important;
+}
+
+.navbar {
+  $transition-duration: 700ms;
+  $transition-cubic-bezier: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  -webkit-transition: background-color $transition-duration $transition-cubic-bezier;
+  -ms-transition: background-color $transition-duration $transition-cubic-bezier;
+  transition: background-color $transition-duration $transition-cubic-bezier;
+
+  * {
+    color: #fafafa !important;
+  }
+
+  .nav-item {
+    font-size: 18px;
+
+    .nav-link {
+      color: #bdbdbd !important;
+    }
+
+    &.active .nav-link {
+      color: #fafafa !important;
+      @extend .shadow;
+    }
+  }
+
+  .navbar-toggler {
+    background-color: transparent;
+    border-color: #fafafa;
+
+    .navbar-toggler-icon {
+      background-image: url("../img/navbar-toggler-icon.svg");
+    }
+  }
+
+  &.transparent {
+    background-color: transparent !important;
+  }
+}
+
+.pgc {
+  @extend .container-fluid;
+  @extend .min-vh-100;
+}
+
+.avatar {
+  @extend .rounded-circle;
+
+  @include media-breakpoint-only(xs) {
+    width: 150px;
+  }
+  @include media-breakpoint-up(sm) {
+    width: 200px;
+  }
+}
+
+.btn {
+  cursor: pointer;
+  padding-top: 0.65rem;
+  font-size: 16px;
+}
+
+#know-more-ic {
+  #keep-scrolling-img {
+    @extend .rounded-circle;
+    @extend .shadow-lg;
+    border: 1px solid $darkgrey--color;
+    background: $darkgrey--color;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    padding: 10px;
+  }
+}

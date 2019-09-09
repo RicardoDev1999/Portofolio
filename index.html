@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+
+    <nav id="my-nav" class="navbar navbar-expand-lg navbar-dark bg-darkgrey fixed-top transparent"
+        style="display:none;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#tab1">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#tab2">About Me</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="fixed-bottom text-center mb-5" id="know-more-ic" style="display:none;">
+        <div id="keep-scrolling-img">
+            <img class="img-fluid" style="width:3em !important;" src="img/keep_scrolling.svg">
+            </img>
+        </div>
+    </div>
+
+    <div style="z-index: 20" class="pgc bg-darkgrey" id="tab1" alt="home">
+
+        <!-- Laptop and bigger -->
+        <div class="d-none d-lg-block">
+            <div class="row justify-content-center align-items-center min-vh-100">
+                <div class="col-lg-3 offset-lg-1 col-xl-3 text-center">
+                    <img src="./img/me.jpg" alt="profile-photo" class="avatar">
+                </div>
+                <div class="col-lg-5 col-xl-4 text-left">
+                    <h1>
+                        Ricardo Duarte
+                    </h1>
+                    <h4>
+                        Software Developer
+                    </h4>
+                    <button type="button" class="btn btn-outline-light mt-4 more-bt">I wanna know more!</button>
+                </div>
+            </div>
+        </div>
+        <!-- Tablets and smaller -->
+        <div class="d-lg-none">
+            <div class="row no-gutters justify-content-center align-items-center min-vh-100">
+                <div class="col-12 text-center">
+                    <img src="./img/me.jpg" alt="profile-photo" class="avatar mb-4">
+                    <h2>
+                        Ricardo Duarte
+                    </h2>
+                    <h5>
+                        Software Developer
+                    </h5>
+                    <button type="button" class="btn btn-outline-light mt-5 more-bt">I wanna know more!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="z-index: 20" class="pgc bg-light" id="tab2" alt="about-me">
+        <div class="container pt-4">
+            <h2 class="bold">About Me</h2>
+            <hr>
+            <div class="row">
+                <div class="col-12 card p-2 bg-darkgrey">
+                    <h4 class="pt-1 pb-4 bold">First Steps</h3>
+                        <p>I started programming at the age of 8.<br> At the start I made some games in Rpg Maker mostly
+                            using the simple tools that the IE had</p>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-8 offset-2 card p-2 bg-darkgrey">
+                    <h4 class="pt-1 pb-4">First Code</h3>
+                        <p>My first line of code was on Unity3D, mostly basics on Java. It was only after some years
+                            that I found C# and feel in love with it.</p>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-8 offset-2 card p-2 bg-darkgrey">
+                    <h4 class="pt-1 pb-4">First Job</h3>
+                        <p>I started working at the age of 18 right after an Intership that lasted about 9 months on the
+                            same Company</p>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12 card p-2 bg-darkgrey">
+                    <h4 class="pt-1 pb-4">What are my objectives?</h3>
+                        <p>I started working at the age of 18 right after an Intership that lasted about 9 months on the
+                            same Company</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="lib/node_modules/jquery/dist/jquery.min.js"></script>
+    <!--<script src="lib/node_modules/popper.js/dist/popper.min.js"></script>-->
+    <script src="lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script>
+
+        var detailsPgCont = [];
+
+        const THEME_LIGHT = "LIGHT";
+        const THEME_DARK = "DARK";
+
+        window.onscroll = function () {
+            verifyScrolls();
+        };
+
+        $(function () {
+
+            verifyScrolls();
+
+            $("#my-nav").css("display", "");
+
+            $(".more-bt").on("click mouseenter mouseleave", function (e) {
+
+                switch (e.type) {
+                    case "mouseleave":
+                        if ($(this).hasClass("moving"))
+                            return;
+                        $("#know-more-ic").fadeOut();
+                        break;
+                    case "mouseenter":
+                        $("#know-more-ic").fadeIn();
+                        break;
+                    case "click":
+                        window.scrollTo(0, $("#tab2").offset().top);
+                        $("#know-more-ic")
+                        addClass("moving")
+                            .fadeIn(function () {
+                                $(this).fadeOut(function () {
+                                    $(this).removeClass("moving");
+                                    this.mouseleave();
+                                });
+                            });
+                        break;
+                }
+            });
+        });
+
+        function verifyPGCS() {
+
+            var pgContainers = $(".pgc");
+            detailsPgCont = [];
+
+            for (i = 0; i < pgContainers.length; i++) {
+
+                var nextPgcOffset;
+                var pgcOffset = $(pgContainers[i]).offset();
+                var theme;
+
+                if ($(pgContainers[i]).hasClass("bg-light"))
+                    theme = THEME_LIGHT;
+                else if ($(pgContainers[i]).hasClass("bg-darkgrey"))
+                    theme = THEME_DARK;
+
+                if (i + 1 == pgContainers.length)
+                    nextPgcOffset = { top: null };
+                else
+                    nextPgcOffset = $(pgContainers[i + 1]).offset();
+
+                var detailPgCont = {
+                    top: pgcOffset.top,
+                    bottom: nextPgcOffset.top,
+                    theme,
+                    inBetween: function (scrollY) {
+
+                        if (this.bottom == null) {
+                            return scrollY >= this.top;
+                        }
+
+                        return scrollY >= this.top && scrollY <= this.bottom
+                    }
+                };
+
+                detailsPgCont.push(detailPgCont);
+            }
+        }
+
+        function verifyScrolls() {
+
+            verifyPGCS();
+
+            var currScrollY = document.documentElement.scrollTop;
+
+            $(detailsPgCont).each((i, e) => {
+                if (!e.inBetween(currScrollY))
+                    return;
+
+                if (e.theme === THEME_LIGHT)
+                    $("#my-nav")
+                        .removeClass("transparent")
+                        .removeClass("fixed-top")
+                        .addClass("fixed-bottom");
+                else if (e.theme === THEME_DARK)
+                    $("#my-nav")
+                        .addClass("transparent")
+                        .addClass("fixed-top")
+                        .removeClass("fixed-bottom");
+            });
+        }
+
+    </script>
+
+    <script>
+    window.onload = function () {
+        // Initialise an empty canvas and place it on the page
+        var canvas = document.createElement("canvas");
+        var context = canvas.getContext("2d");
+        canvas.width = document.body.offsetWidth;
+        canvas.height = document.body.offsetHeight;
+        $(canvas)
+        .css("position", "absolute")
+        .css("background-color", "transparent")
+        .css("top", "0")
+        .css("z-index" , "0")
+        .css("width" , "100%")
+        .css("height", "100%");
+        $(document.body).prepend(canvas);
+        // Inital starting position
+        var posX = 20,
+            posY = canvas.height / 2;
+        // No longer setting velocites as they will be random
+        // Set up object to contain particles and set some default values
+        var particles = {},
+            particleIndex = 0,
+            settings = {
+                density: 150,
+                gravity: 0.1,
+                maxSize: 0.2,
+                maxOpacity: 0.1,
+            };
+        // Set up a function to create multiple particles
+        function Particle() {
+            // Establish starting positions and velocities
+            this.x = Math.round(Math.random() * canvas.width + 1, 1);
+            this.y = Math.round(0, 1);
+            // Determine original X-axis speed based on setting limitation
+            this.vx = Math.random() * 8 - 2;
+            this.vy = Math.random() * 8 - 2;
+            this.randomXPos = Math.round(Math.random() * 2) - 1;
+            this.randomYPos = Math.round(Math.random() * 2) - 1;
+            this.size = Math.round(Math.random() * settings.maxSize) + 1;
+            // Add new particle to the index
+            // Object used as it's simpler to manage that an array
+            particleIndex++;
+            particles[particleIndex] = this;
+            this.id = particleIndex;
+            this.life = 0;
+            this.maxLife = 150;
+        }
+        // Some prototype methods for the particle's "draw" function
+        Particle.prototype.draw = function () {
+            this.x += this.vx;
+            this.y += this.vy;
+            // Adjust for gravity
+            this.vy += settings.gravity;
+            // Age the particle
+            this.life++;
+            this.opacity = Math.random() * settings.maxOpacity + 0.7;
+            // If Particle is old, it goes in the chamber for renewal
+            if (this.life >= this.maxLife) {
+                delete particles[this.id];
+            }
+            // Create the shapes
+            context.clearRect(settings.leftWall, settings.groundLevel, canvas.width, canvas.height);
+            context.beginPath();
+            context.moveTo(this.x, this.y);
+            context.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+            context.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+            context.fill();
+        }
+        setInterval(function () {
+            context.fillStyle = "rgba(10,10,10,0.8)";
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            // Draw the particles
+            for (var i = 0; i < settings.density; i++) {
+                if (Math.random() > 0.97) {
+                    // Introducing a random chance of creating a particle
+                    // corresponding to an chance of 1 per second,
+                    // per "density" value
+                    new Particle();
+                }
+            }
+            for (var i in particles) {
+                particles[i].draw();
+            }
+        }, 30);
+    }
+</script>
+</body>
+
+</html>
